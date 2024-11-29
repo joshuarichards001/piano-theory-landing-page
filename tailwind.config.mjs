@@ -2,7 +2,12 @@
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Poppins", "sans-serif"], // Default font
+        fredoka: ["Fredoka", "sans-serif"], // Heading font
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
