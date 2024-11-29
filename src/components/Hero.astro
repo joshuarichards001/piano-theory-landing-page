@@ -1,0 +1,27 @@
+---
+import screenshot from "../assets/iphone-video.mp4";
+---
+
+<section
+  class="flex md:flex-row flex-col items-center gap-20 md:my-40 my-10 max-w-[1000px]"
+>
+  <div class="flex flex-col gap-10 max-w-[600px] mx-6">
+    <h1 class="text-6xl font-fredoka">
+      Effortlessly Learn <span class="text-primary">Notes</span>, <span
+        class="text-secondary">Chords</span
+      >, and <span class="text-accent">Scales</span>
+    </h1>
+    <p class="text-xl">
+      Dive into the world of music theory. Piano Theory provides a place to hone
+      your fundamentals. Pick a topic, and see how quickly and accurately you
+      can hit the right notes!
+    </p>
+  </div>
+  <div class="mockup-phone min-w-64">
+    <div class="display !mt-0">
+      <video autoplay loop class="w-64 rounded-3xl overflow-hidden">
+        <source src={screenshot} type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</section>

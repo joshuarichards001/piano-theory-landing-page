@@ -1,5 +1,6 @@
 ---
-import screenshot from "../assets/iphone-video.mp4";
+import Hero from "../components/Hero.astro";
+import Nav from "../components/Nav.astro";
 ---
 
 <html lang="en">
@@ -19,35 +20,9 @@ import screenshot from "../assets/iphone-video.mp4";
     <title>Astro</title>
   </head>
   <body class="font-sans">
-    <nav class="navbar mx-auto max-w-[1000px]">
-      <div class="flex-1">
-        <a href="/" class="btn btn-ghost text-xl">Piano Theory</a>
-      </div>
-      <div class="flex-none">
-        <ul class="menu menu-horizontal px-1">
-          <li class="btn btn-primary font-sans font-bold">
-            <a>Join Waitlist</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <Nav />
     <main class="flex justify-center">
-      <section class="flex items-start gap-10 my-40 max-w-[800px]">
-        <div class="flex flex-col gap-4 max-w-[300px]">
-          <h1 class="text-4xl font-fredoka">Piano Theory</h1>
-          <p>
-            Dive into the world of music theory. Pick a topic, and see how
-            quickly and accurately you can hit the right notes!
-          </p>
-        </div>
-        <div class="mockup-phone">
-          <div class="display !mt-0">
-            <video autoplay loop class="w-64 rounded-3xl overflow-hidden">
-              <source src={screenshot} type="video/mp4" />
-            </video>
-          </div>
-        </div>
-      </section>
+      <Hero />
     </main>
   </body>
 </html>
