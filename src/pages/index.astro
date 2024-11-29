@@ -1,16 +1,52 @@
 ---
-
+import screenshot from "../assets/iphone-video.mp4";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <nav class="navbar mx-auto max-w-[1000px]">
+      <div class="flex-1">
+        <a href="/" class="btn btn-ghost text-xl">Piano Theory</a>
+      </div>
+      <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+          <li class="btn btn-primary"><a>Join Waitlist</a></li>
+        </ul>
+      </div>
+    </nav>
+    <main class="flex justify-center">
+      <section class="flex items-start gap-10 my-40 max-w-[800px]">
+        <div class="flex flex-col gap-4 max-w-[300px]">
+          <h1 class="text-4xl">Piano Theory</h1>
+          <p>
+            Dive into the world of music theory. Pick a topic, and see how
+            quickly and accurately you can hit the right notes!
+          </p>
+        </div>
+        <div class="mockup-phone">
+          <div class="display !mt-0">
+            <video autoplay loop class="w-64 rounded-3xl overflow-hidden">
+              <source src={screenshot} type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
