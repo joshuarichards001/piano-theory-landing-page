@@ -1,24 +1,25 @@
 <form
   id="waitlist-form"
-  class="bg-gray-200 rounded-full overflow-hidden w-fit h-fit"
+  class="bg-gray-100 border rounded-xl overflow-hidden w-full max-w-md h-fit flex"
 >
-  <input
-    type="email"
-    id="email-input"
-    placeholder="Enter your email..."
-    class="input w-64 bg-inherit rounded-full m-2"
-    required
-  />
+  <div class="flex flex-col w-full">
+    <input
+      type="email"
+      id="email-input"
+      placeholder="Enter email..."
+      class="input bg-inherit rounded-md m-2 pr-0 w-full"
+      required
+    />
+    <div id="message" class="ml-6 mb-3 text-xs" hidden></div>
+  </div>
   <button
     type="submit"
     id="submit-button"
-    class="btn btn-primary rounded-full font-sans font-bold h-full m-2 shadow-md"
+    class="btn btn-primary font-sans font-bold m-2 shadow-md"
   >
     Join Waitlist
   </button>
 </form>
-<div id="message"></div>
-<div id="error-message"></div>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     document
@@ -33,21 +34,12 @@
           "submit-button",
         ) as HTMLButtonElement;
         const messageDiv = document.getElementById("message") as HTMLDivElement;
-        const errorDiv = document.getElementById(
-          "error-message",
-        ) as HTMLDivElement;
 
         const email = emailInput?.value;
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-          errorDiv.textContent = "Please enter a valid email address.";
-          messageDiv.textContent = "";
-          return;
-        }
-
         submitButton.disabled = true;
-        errorDiv.textContent = "";
+        messageDiv.hidden = false;
+        messageDiv.style.color = "black";
         messageDiv.textContent = "Submitting...";
 
         try {
@@ -63,15 +55,18 @@
           );
 
           if (response.ok) {
+            messageDiv.style.color = "green";
             messageDiv.textContent = "Successfully joined the waitlist!";
             emailInput.value = "";
           } else {
             const errorData = await response.json();
-            errorDiv.textContent =
-              errorData.message || "Failed to join waitlist. Please try again.";
+            throw new Error(errorData.message);
           }
         } catch (error) {
-          errorDiv.textContent = "Network error. Please try again.";
+          console.error(error);
+          messageDiv.style.color = "red";
+          messageDiv.textContent =
+            "Problem joining the waitlist. Please try again.";
         } finally {
           submitButton.disabled = false;
         }
