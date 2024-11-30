@@ -1,12 +1,14 @@
+---
+import JoinWaitlist from "./JoinWaitlist.astro";
+---
+
 <nav class="navbar mx-auto max-w-[1000px]">
   <div class="flex-1">
-    <a href="/" class="btn btn-ghost text-xl">Piano Theory</a>
+    <p class="text-xl font-bold">Piano Theory</p>
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
-      <button class="btn btn-primary font-sans font-bold">
-        <a>Join Waitlist</a>
-      </button>
+      <JoinWaitlist />
     </ul>
   </div>
 </nav>

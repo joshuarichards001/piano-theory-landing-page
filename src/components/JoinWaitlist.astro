@@ -1,0 +1,80 @@
+<form
+  id="waitlist-form"
+  class="bg-gray-200 rounded-full overflow-hidden w-fit h-fit"
+>
+  <input
+    type="email"
+    id="email-input"
+    placeholder="Enter your email..."
+    class="input w-64 bg-inherit rounded-full m-2"
+    required
+  />
+  <button
+    type="submit"
+    id="submit-button"
+    class="btn btn-primary rounded-full font-sans font-bold h-full m-2 shadow-md"
+  >
+    Join Waitlist
+  </button>
+</form>
+<div id="message"></div>
+<div id="error-message"></div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document
+      .getElementById("waitlist-form")
+      ?.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const emailInput = document.getElementById(
+          "email-input",
+        ) as HTMLInputElement;
+        const submitButton = document.getElementById(
+          "submit-button",
+        ) as HTMLButtonElement;
+        const messageDiv = document.getElementById("message") as HTMLDivElement;
+        const errorDiv = document.getElementById(
+          "error-message",
+        ) as HTMLDivElement;
+
+        const email = emailInput?.value;
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          errorDiv.textContent = "Please enter a valid email address.";
+          messageDiv.textContent = "";
+          return;
+        }
+
+        submitButton.disabled = true;
+        errorDiv.textContent = "";
+        messageDiv.textContent = "Submitting...";
+
+        try {
+          const response = await fetch(
+            "https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-7ee6ce09-7bf7-4175-aa5f-d29474ad4e7f/default/add-user-to-mailing-list",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email: email }),
+            },
+          );
+
+          if (response.ok) {
+            messageDiv.textContent = "Successfully joined the waitlist!";
+            emailInput.value = "";
+          } else {
+            const errorData = await response.json();
+            errorDiv.textContent =
+              errorData.message || "Failed to join waitlist. Please try again.";
+          }
+        } catch (error) {
+          errorDiv.textContent = "Network error. Please try again.";
+        } finally {
+          submitButton.disabled = false;
+        }
+      });
+  });
+</script>
