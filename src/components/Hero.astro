@@ -1,28 +1,47 @@
 ---
-import screenshot from "../assets/iphone-video.mp4";
+import { Image } from "astro:assets";
+import homeScreenshot from "../assets/home-screenshot.png";
+import quizScreenshot from "../assets/quiz-screenshot.png";
 import JoinWaitlist from "./JoinWaitlist.astro";
 ---
 
 <section
-  class="flex md:flex-row flex-col items-center gap-10 md:my-40 my-20 max-w-[1000px]"
+  class="flex flex-col items-center md:my-32 my-20 mx-10 max-w-[600px] text-center"
 >
-  <div class="flex flex-col gap-10 max-w-[600px] mx-6">
-    <h1 class="text-5xl leading-[1.1] font-fredoka">
-      Effortlessly Learn <span class="text-primary">Notes</span>, <span
-        class="text-secondary">Chords</span
-      >, and <span class="text-accent">Scales</span>
-    </h1>
-    <p class="text-lg">
-      Dive into the world of music theory. Pick a topic, and see how quickly and accurately you
-      can hit the right notes!
-    </p>
+  <h1 class="text-5xl leading-[1.1] font-fredoka mb-6">
+    Effortlessly Learn <span class="text-primary">Notes</span>, <span
+      class="text-secondary">Chords</span
+    >, and <span class="text-accent">Scales</span>
+  </h1>
+  <p class="text-lg mb-6">
+    Dive into the world of music theory. Pick a topic, and see how quickly and
+    accurately you can hit the right notes!
+  </p>
+  <div class="mb-20">
     <JoinWaitlist />
   </div>
-  <div class="mockup-phone min-w-64">
-    <div class="display !mt-0">
-      <video autoplay loop class="w-64 rounded-3xl overflow-hidden">
-        <source src={screenshot} type="video/mp4" />
-      </video>
+  <div class="flex justify-center">
+    <div
+      class="mockup-phone rounded-[30px] p-1 transform sm:-rotate-12 -rotate-6 absolute sm:-ml-40 -ml-32"
+    >
+      <div class="display !rounded-none !mt-0 sm:w-[200px] w-[160px]">
+        <Image
+          src={homeScreenshot}
+          alt="Home Screenshot of the app"
+          width={200}
+        />
+      </div>
+    </div>
+    <div
+      class="mockup-phone rounded-[30px] p-1 transform sm:rotate-12 rotate-6 sm:ml-40 ml-32 z-10"
+    >
+      <div class="display !rounded-none !mt-0 sm:w-[200px] w-[160px]">
+        <Image
+          src={quizScreenshot}
+          alt="Quiz Screenshot of the app"
+          width={200}
+        />
+      </div>
     </div>
   </div>
 </section>
